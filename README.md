@@ -42,7 +42,7 @@ uvicorn app.main:app --reload
 
 ```json
 {
-  "user_id": 1,
+  "user_id": 55,
   "text_query": "What is my account balance?"
 }
 ```
@@ -53,11 +53,21 @@ uvicorn app.main:app --reload
   "status": "success",
   "source": "llm_generation",
   "latency_ms": 1523.45,
-  "output_text": "Hi Joshua, your Current account balance is 1313.38."
+  "output_text": "Hi John, your Current account balance is 5639.51."
 }
 ```
 
-On the second similar query, the response comes from `semantic_cache` with much lower latency.
+On the second similar query, the response comes from `semantic_cache` with much lower latency about 1000x lower response time.
+**Response:**
+```json
+{
+  "status": "success",
+  "source": "semantic_cache",
+  "latency_ms": 1.27,
+  "output_text": "Hi John, your Savings account balance is 5639.51."
+}
+```
+
 
 ## Project Structure
 
