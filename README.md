@@ -57,7 +57,7 @@ uvicorn app.main:app --reload
 }
 ```
 
-On the second similar query, the response comes from `semantic_cache` with much lower latency about 1000x lower response time.
+On the second similar query, the response comes from `semantic_cache` with much lower latency about 100x+  lower response time.
 **Response:**
 ```json
 {
