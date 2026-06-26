@@ -4,13 +4,11 @@ from app.core.config import settings
 
 _client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
-# Cache: exact query text → embedding vector (deterministic, safe to cache forever)
 _embedding_cache: dict[str, List[float]] = {}
-
-
 def get_embedding(text: str) -> List[float]:
-    """Convert text into a 768-dimensional vector using Gemini's embedding model.
-    Returns cached result if the same text was embedded before."""
+    #Convert text into a 768-dimensional vector uding gemini embeddings
+
+    
     if text in _embedding_cache:
         return _embedding_cache[text]
 
