@@ -11,7 +11,7 @@ User Query → Gemini Embedding → Vector Similarity Search
                      Cache HIT                     Cache MISS
                           │                              │
                Fill template with               Send query + user data
-               user's CSV data                     to Gemini LLM
+               user's data from database            to Gemini LLM
                           │                              │
                    Return fast                  Return LLM answer +
                    response                     save template to cache
