@@ -16,7 +16,7 @@ app = FastAPI(title=settings.PROJECT_NAME)
 def query(request: QueryRequest):
     start_time = time.perf_counter()
 
-    # 1. Validate user exists in CSV database
+    # 1. Validate user 
     user_data = get_user_data(request.user_id)
     if not user_data:
         raise HTTPException(status_code=404, detail=f"Customer ID {request.user_id} not found.")
@@ -28,7 +28,7 @@ def query(request: QueryRequest):
     cache_hit = find_cached_template(query_vector)
 
     if cache_hit:
-        # --- CACHE HIT: hydrate the saved template with this user's data ---
+        #CACHE HIT: hydrate the saved template with this user's data 
         output = cache_hit["template"]
 
         # Build a mapping from template keys to user's CSV data
@@ -67,7 +67,7 @@ def query(request: QueryRequest):
             output_text=output,
         )
 
-    # --- CACHE MISS: send to Gemini LLM ---
+    #CACHE MISS: send to LLM
     llm_result = generate_llm_response(request.user_id, request.text_query)
 
     # Save the template + vector into the cache for future queries
