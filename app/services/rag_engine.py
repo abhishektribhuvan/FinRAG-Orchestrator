@@ -12,7 +12,7 @@ _client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
 
 class LLMResponse(BaseModel):
-    """Schema enforced on Gemini's JSON output."""
+    # schema for gemini output
     direct_answer: str = Field(description="A personalized response for this user.")
     reusable_template: str = Field(description="Generic template with {{placeholder}} tags.")
     required_keys: list[str] = Field(description="List of placeholder names used in the template.")
@@ -23,10 +23,10 @@ def generate_llm_response(user_id: int, query_text: str) -> Dict[str, Any]:
     Fetch user data from CSV, send it to Gemini along with the query,
     and return the structured response (direct answer + reusable template).
     """
-    # Step 1: Get user data from CSV
+    #Get user data
     user_data = get_user_data(user_id)
 
-    # Step 2: Build context for the LLM
+    #build context for llm
     context = {
         "user_profile": {
             "first_name": user_data["First Name"],
@@ -58,7 +58,7 @@ def generate_llm_response(user_id: int, query_text: str) -> Dict[str, Any]:
 
     prompt = f"User Query: {query_text}\nDatabase Context: {json.dumps(context)}"
 
-    # Step 3: Call Gemini with structured JSON output
+    #3 call gemini
     response = _client.models.generate_content(
         model=settings.LLM_MODEL,
         contents=prompt,
@@ -69,7 +69,7 @@ def generate_llm_response(user_id: int, query_text: str) -> Dict[str, Any]:
         },
     )
 
-    # Step 4: Parse and return
+    #4. return
     payload = json.loads(response.text)
     payload["concept_id"] = f"gemini_{int(time.time())}"
     return payload
