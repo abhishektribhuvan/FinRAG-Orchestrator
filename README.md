@@ -1,4 +1,4 @@
-# Personalized Semantic Cache & RAG Engine
+# FinRAG-Orchestrator
 
 A FastAPI-based banking query system that uses **Gemini AI** for intelligent responses and a **semantic vector cache** for fast repeated queries.
 
