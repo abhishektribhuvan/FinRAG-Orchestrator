@@ -5,7 +5,7 @@ from app.database.vector_db import vector_db
 
 
 def _cosine_similarity(vec1: list, vec2: list) -> float:
-    """Compute cosine similarity between two vectors."""
+    #Compute cosine similarity
     v1, v2 = np.array(vec1), np.array(vec2)
     norm1, norm2 = np.linalg.norm(v1), np.linalg.norm(v2)
     if norm1 == 0 or norm2 == 0:
@@ -14,7 +14,7 @@ def _cosine_similarity(vec1: list, vec2: list) -> float:
 
 
 def find_cached_template(query_vector: list) -> Optional[Dict[str, Any]]:
-    """Search the vector DB for a template whose embedding is similar enough to the query."""
+    #Search the vector DB for a template whose embedding is similar enough to the query.....
     best_match = None
     best_score = 0.0
 
