@@ -2,6 +2,8 @@
 
 A FastAPI-based banking query system that uses **Gemini AI** for intelligent responses and a **semantic vector cache** for fast repeated queries.
 
+live at : http://13.61.186.116/docs
+
 ## How It Works
 
 ```
